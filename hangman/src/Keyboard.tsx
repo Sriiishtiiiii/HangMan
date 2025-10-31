@@ -7,7 +7,12 @@ type KeyboardProps = {
   addGuessedLetter?: (letter: string) => void;
 };
 
-const KEYS = Array.from("abcdefghijklmnopqrstuvwxyz");
+// QWERTY keyboard layout
+const ROWS = [
+  ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+  ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+  ["z", "x", "c", "v", "b", "n", "m"],
+];
 
 export function Keyboard({
   disabled = false,
@@ -17,53 +22,30 @@ export function Keyboard({
 }: KeyboardProps) {
   return (
     <div className="keyboard-grid">
-      {KEYS.map((key) => {
-        const isActive = activeLetters.includes(key);
-        const isInactive = inactiveLetters.includes(key);
+      {ROWS.map((row, rowIndex) => (
+        <div key={rowIndex} className={`keyboard-row row-${rowIndex + 1}`}>
+          {row.map((key) => {
+            const isActive = activeLetters.includes(key);
+            const isInactive = inactiveLetters.includes(key);
+            const btnStatus = isActive
+              ? "active"
+              : isInactive
+              ? "inactive"
+              : "";
 
-        return (
-          <button
-            key={key}
-            onClick={() => addGuessedLetter(key)}
-            disabled={isInactive || isActive || disabled}
-            style={{
-              fontFamily: "monospace",
-              fontSize: "1.25rem",
-              textTransform: "uppercase",
-              fontWeight: "bold",
-              cursor: "pointer",
-              padding: ".45em 0",
-              border: "2px solid #00ff99",
-              background: isActive
-                ? "#00ff99"
-                : isInactive
-                ? "rgba(0,255,153,0.1)"
-                : "transparent",
-              color: isActive ? "black" : "#00ff99",
-              filter: isActive
-                ? "drop-shadow(0 0 10px #00ff99)"
-                : "drop-shadow(0 0 3px #00ff99)",
-              transition: "all 0.2s ease-in-out",
-              borderRadius: "6px",
-              pointerEvents: disabled ? "none" : "auto",
-            }}
-            onMouseEnter={(e) => {
-              if (!isInactive && !isActive) {
-                (e.target as HTMLElement).style.filter =
-                  "drop-shadow(0 0 15px #00ff99)";
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!isInactive && !isActive) {
-                (e.target as HTMLElement).style.filter =
-                  "drop-shadow(0 0 3px #00ff99)";
-              }
-            }}
-          >
-            {key}
-          </button>
-        );
-      })}
+            return (
+              <button
+                key={key}
+                className={`keyboard-button ${btnStatus}`}
+                onClick={() => addGuessedLetter(key)}
+                disabled={isInactive || isActive || disabled}
+              >
+                {key}
+              </button>
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 }

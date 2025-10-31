@@ -56,20 +56,7 @@ export default function App() {
     <div className="matrix-bg">
       <div className="container">
         <div className="game-grid">
-          <div
-            className="title"
-            style={{
-              fontFamily: "monospace",
-              fontWeight: "bold",
-              color: "#00ff99",
-              textShadow: "0 0 20px #00ff99, 0 0 40px #00ff99",
-              letterSpacing: "0.1em",
-              transform: "perspective(500px) rotateX(10deg)",
-              transformOrigin: "bottom",
-            }}
-          >
-            {visibleLetters}
-          </div>
+          <div className="title">{visibleLetters}</div>
 
           <div className="drawing">
             <HangmanDrawing numberOfGuesses={incorrectLetters.length} />

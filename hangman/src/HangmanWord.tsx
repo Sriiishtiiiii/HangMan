@@ -11,10 +11,11 @@ export function HangmanWord({
 }: HangmanWordProps) {
   return (
     <div
+      className="hangman-word"
       style={{
         display: "flex",
         gap: ".25em",
-        fontSize: "clamp(2rem, 8vw, 5rem)",
+        fontSize: "clamp(1.5rem, 5.5vw, 3.5rem)",
         fontWeight: "bold",
         textTransform: "uppercase",
         fontFamily: "monospace",
@@ -25,12 +26,12 @@ export function HangmanWord({
         <span
           key={index}
           style={{
-            borderBottom: ".1em solid #00ff99", // ✅ neon green border
+            borderBottom: ".1em solid #00ff99",
             width: "1em",
             textAlign: "center",
             color:
               guessedLetters.includes(letter) || reveal
-                ? "#00ff99" // show correct letters in neon green
+                ? "#00ff99"
                 : "transparent", // hide unguessed letters
             textShadow:
               guessedLetters.includes(letter) || reveal

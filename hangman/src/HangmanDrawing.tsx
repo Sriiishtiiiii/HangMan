@@ -13,10 +13,10 @@ const HEAD = (
       width: "50px",
       height: "50px",
       borderRadius: "100%",
-      border: `10px solid ${NEON_COLOR}`,
+      border: `7px solid ${NEON_COLOR}`,
       position: "absolute",
-      top: "50px",
-      right: "-30px",
+      top: "35px",
+      right: "-20px",
       ...glow,
     }}
   />
@@ -25,11 +25,11 @@ const HEAD = (
 const BODY = (
   <div
     style={{
-      width: "10px",
-      height: "100px",
+      width: "7px",
+      height: "70px",
       background: NEON_COLOR,
       position: "absolute",
-      top: "120px",
+      top: "88px",
       right: 0,
       ...glow,
     }}
@@ -39,12 +39,12 @@ const BODY = (
 const RIGHT_ARM = (
   <div
     style={{
-      width: "100px",
-      height: "10px",
+      width: "70px",
+      height: "7px",
       background: NEON_COLOR,
       position: "absolute",
-      top: "150px",
-      right: "-100px",
+      top: "105px",
+      right: "-70px",
       transform: "rotate(-30deg)",
       transformOrigin: "left bottom",
       ...glow,
@@ -55,12 +55,12 @@ const RIGHT_ARM = (
 const LEFT_ARM = (
   <div
     style={{
-      width: "100px",
-      height: "10px",
+      width: "70px",
+      height: "7px",
       background: NEON_COLOR,
       position: "absolute",
-      top: "150px",
-      right: "10px",
+      top: "105px",
+      right: "7px",
       transform: "rotate(30deg)",
       transformOrigin: "right bottom",
       ...glow,
@@ -71,12 +71,12 @@ const LEFT_ARM = (
 const RIGHT_LEG = (
   <div
     style={{
-      width: "100px",
-      height: "10px",
+      width: "70px",
+      height: "7px",
       background: NEON_COLOR,
       position: "absolute",
-      top: "210px",
-      right: "-90px",
+      top: "147px",
+      right: "-63px",
       transform: "rotate(60deg)",
       transformOrigin: "left bottom",
       ...glow,
@@ -87,11 +87,11 @@ const RIGHT_LEG = (
 const LEFT_LEG = (
   <div
     style={{
-      width: "100px",
-      height: "10px",
+      width: "70px",
+      height: "7px",
       background: NEON_COLOR,
       position: "absolute",
-      top: "210px",
+      top: "147px",
       right: 0,
       transform: "rotate(-60deg)",
       transformOrigin: "right bottom",
@@ -108,12 +108,12 @@ type HangmanDrawingProps = {
 
 export function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", marginTop: "75px" }}>
       {BODY_PARTS.slice(0, numberOfGuesses)}
       <div
         style={{
-          height: "50px",
-          width: "10px",
+          height: "35px",
+          width: "7px",
           background: NEON_COLOR,
           position: "absolute",
           top: 0,
@@ -123,26 +123,26 @@ export function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
       />
       <div
         style={{
-          height: "10px",
-          width: "200px",
+          height: "7px",
+          width: "140px",
           background: NEON_COLOR,
-          marginLeft: "120px",
+          marginLeft: "84px",
           ...glow,
         }}
       />
       <div
         style={{
-          height: "400px",
-          width: "10px",
+          height: "280px",
+          width: "7px",
           background: NEON_COLOR,
-          marginLeft: "120px",
+          marginLeft: "84px",
           ...glow,
         }}
       />
       <div
         style={{
-          height: "10px",
-          width: "250px",
+          height: "7px",
+          width: "175px",
           background: NEON_COLOR,
           ...glow,
         }}
