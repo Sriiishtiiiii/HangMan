@@ -1,0 +1,173 @@
+@keyframes matrix {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow:
+      0 0 20px rgba(0, 255, 153, 0.3),
+      0 0 40px rgba(0, 255, 153, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 40px rgba(0, 255, 153, 0.6),
+      0 0 80px rgba(0, 255, 153, 0.4);
+  }
+}
+
+/* Status text effects */
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.85; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+  background-color: #000;
+  background-image:
+    radial-gradient(circle at center, rgba(0, 255, 153, 0.15) 0%, transparent 70%),
+    linear-gradient(rgba(0, 255, 153, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 153, 0.1) 1px, transparent 1px);
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 100% 100%, 20px 20px, 20px 20px;
+  box-shadow: inset 0 0 80px rgba(0, 255, 153, 0.2); /* soft glow around edges */
+  animation: matrix 15s linear infinite;
+}
+
+/* ===== Game Container (Floating Neon Panel) ===== */
+.container {
+  /* Positioning */
+  position: relative;
+
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+  max-width: 900px;
+  height: min(92vh, 800px);
+  padding: 1.5rem;
+  overflow: visible; /* allow internal sections to render fully */
+
+  /* Visuals */
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  border: 2px solid #00ff99;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0, 255, 153, 0.3);
+  animation: glow 4s ease-in-out infinite;
+}
+
+/* ===== Responsive (smaller screens) ===== */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.25rem;
+    height: auto;
+    max-height: none;
+  }
+}
+
+/* ===== Game layout ===== */
+.game-grid {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto; /* give drawing the flexible space */
+  gap: 0.75rem;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+}
+
+.title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  margin: 0;
+}
+
+.drawing {
+  transform: scale(0.85);
+  transform-origin: top center;
+}
+
+.word {
+  transform: scale(0.9);
+  transform-origin: top center;
+}
+
+.keyboard-wrap {
+  width: 100%;
+  max-width: 560px;
+  transform: scale(0.9);
+  transform-origin: top center;
+}
+
+.status {
+  min-height: 2.6rem; /* reserve space so layout doesn't jump */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.status-text {
+  font-family: monospace;
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  letter-spacing: 0.06em;
+  animation: flicker 3s infinite, popIn 250ms ease-out both;
+  text-shadow:
+    0 0 8px rgba(0,255,153,0.5),
+    0 0 16px rgba(0,255,153,0.3);
+}
+
+.status-text.win {
+  color: #00ff99;
+  text-shadow:
+    0 0 10px rgba(0,255,153,0.7),
+    0 0 24px rgba(0,255,153,0.5);
+}
+
+.status-text.lose {
+  color: #ff3366;
+  text-shadow:
+    0 0 10px rgba(255,51,102,0.7),
+    0 0 24px rgba(255,51,102,0.5);
+}
+
+/* Keyboard grid centers last row */
+.keyboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(48px, 48px));
+  gap: 0.4rem;
+  justify-content: center; /* centers last row */
+  align-content: start;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-height: 740px) {
+  .drawing { transform: scale(0.75); }
+  .word { transform: scale(0.85); }
+  .keyboard-wrap { transform: scale(0.85); }
+  .status { min-height: 2.2rem; }
+}
