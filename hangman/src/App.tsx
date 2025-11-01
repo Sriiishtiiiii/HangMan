@@ -39,7 +39,7 @@ export default function App() {
     .split("")
     .every((letter) => guessedLetters.includes(letter));
 
-  const title = "N E O N   H A N G M A N ";
+  const title = "N E O N    H A N G M A N ";
   const [visibleLetters, setVisibleLetters] = useState("");
 
   useEffect(() => {
