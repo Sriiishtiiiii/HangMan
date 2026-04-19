@@ -1,2 +1,2 @@
 # HangMan
-Yupp my fav game, has to be here.
+Yupp my fav game, has to be up here.
